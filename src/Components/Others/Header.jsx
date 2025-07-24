@@ -1,12 +1,23 @@
-import React from 'react'
+import React from 'react';
 
-const Header = () => {
+const Header = ({ onLogout, data }) => {
   return (
-    <div className='flex  bg-[#1C1C1C] pl-20 pr-20 items-center justify-between text-white '>
-      <h1 className='text-2xl font-medium '>Hello <br /> Harshu</h1>
-      <button className='rounded bg-red-500 p-3 px-8 '>Log out</button>
-    </div>
-  )
-}
+    <header className="bg-gradient-to-r from-[#1C1C1C] to-[#2F2F2F] shadow-md px-8 py-4 flex items-center justify-between">
+      <div>
+        <h2 className="text-white text-xl font-semibold">
+          Welcome back,
+          <span className="block text-green-400 text-2xl mt-1">{data?.name || 'User'}</span>
+        </h2>
+      </div>
 
-export default Header
+      <button
+        onClick={onLogout}
+        className="bg-red-500 hover:bg-red-600 text-white font-medium px-6 py-2 rounded-xl transition-all duration-200 shadow-sm"
+      >
+        Log out
+      </button>
+    </header>
+  );
+};
+
+export default Header;

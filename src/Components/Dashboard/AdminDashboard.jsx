@@ -3,10 +3,12 @@ import Header from '../Others/Header'
 import CreateTeast from '../Others/CreateTeast'
 import AllTask from '../Others/AllTask'
 
-const AdminDashboard = () => {
+const AdminDashboard = ({onLogout,data}) => {
+  console.log(data);
+  
   return (
     <div className='h-full  w-full p-10 '>
-      <Header />
+      <Header onLogout={onLogout} data={data} />
         <CreateTeast />
      <AllTask />
     </div>

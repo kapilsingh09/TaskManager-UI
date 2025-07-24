@@ -4,11 +4,15 @@ import Header from '../Others/Header'
 import TaksNumber from '../Others/TaksNumber'
 import Tasklist from '../Others/Tasklist'
 
-const EnpollyeDashboard = () => {
+const EnpollyeDashboard = ({onLogout,data}) => {
+  // console.log(loggedInUser.role);
+  // console.log(data);
+  
+  
   return (
     <div className='pl-20 pr-20 bg-[#1C1C1C] p-10'>
-      <Header />
-      
+      <Header onLogout={onLogout} data={data} />
+      {/* <h1>{loggedInUser}</h1> */}
       <TaksNumber />
 
       <Tasklist />
