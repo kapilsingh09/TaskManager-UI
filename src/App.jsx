@@ -78,7 +78,7 @@ const App = () => {
   }
 
   return (
-    <div className="h-[100vh] w-full bg-zinc-900 text-white">
+    <div className="h-full w-full bg-zinc-900 text-white">
       {!userRole ? (
         <Login handleLogin={handleLogin} error={error} clearError={clearError} />
       ) : userRole === 'admin' ? (

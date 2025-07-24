@@ -1,43 +1,70 @@
-  import React from 'react'
+import React from 'react';
 
-  const CreateTeast = () => {
-    return (
-      <div>
-        <div>
-          <form className='flex flex-wrap items-center w-full bg-zinc-900   justify-between'>
-        <div className='1/2 p-9'>
+const CreateTask = () => {
+  return (
+    <div className="p-10 bg-zinc-900 min-h-screen text-white">
+      <h2 className="text-3xl font-semibold mb-6 text-center">Create New Task</h2>
+      
+      <form className="flex flex-wrap bg-[#1C1C1C] p-8 rounded-xl shadow-lg gap-10">
+        {/* Left Side */}
+        <div className="flex-1 space-y-6">
+          <div>
+            <label className="block text-sm mb-2 font-medium">Task Title</label>
+            <input
+              type="text"
+              placeholder="Make a UI design"
+              className="w-full px-4 py-2 rounded-md bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-green-400"
+            />
+          </div>
 
-              <div className='p-4'>
-            <h3>Task title</h3>
-            <input className='border-1  outline-none px-10 rounded' type="text" placeholder='Make a UI desgin' />
-            </div>
+          <div>
+            <label className="block text-sm mb-2 font-medium">Assign To</label>
+            <input
+              type="text"
+              placeholder="Employee name"
+              className="w-full px-4 py-2 rounded-md bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-green-400"
+            />
+          </div>
 
-            <div  className='p-4'>
-            <h3>Asgin to</h3>
-            <input className='border-1  outline-none px-10 rounded' type="text" placeholder='empolye name' />
-            </div>
-            <div  className='p-4'>
-            <h3>Category</h3>
-            <input  className='border-1  outline-none px-10 rounded' type="text" placeholder='Desgin dev etc' />
-            </div>
-              <div  className='p-4 mt-3'>
-              <h3>Date</h3>
-            <input className='border-1 outline-none px-10 rounded' type="date" />
-              </div>
+          <div>
+            <label className="block text-sm mb-2 font-medium">Category</label>
+            <input
+              type="text"
+              placeholder="Design, Development, etc."
+              className="w-full px-4 py-2 rounded-md bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-green-400"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm mb-2 font-medium">Deadline</label>
+            <input
+              type="date"
+              className="w-full px-4 py-2 rounded-md bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-green-400"
+            />
+          </div>
         </div>
-          
-              <div className='1/2 flex flex-col pr-20'>
-            <h3>Description</h3>
-              <textarea className='border-2 w-[500px]  border-white ' name="" id="" cols='30' rows='10'></textarea>
-              <button className='bg-green-400 px-10 p-3 mt-3 rounded-xl'> create task</button>
-            </div>
 
-        
+        {/* Right Side */}
+        <div className="flex-1 space-y-6">
+          <div>
+            <label className="block text-sm mb-2 font-medium">Description</label>
+            <textarea
+              rows="8"
+              placeholder="Write task details..."
+              className="w-full px-4 py-2 rounded-md bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-green-400 resize-none"
+            ></textarea>
+          </div>
 
-          </form>
+          <button
+            type="submit"
+            className="bg-green-500 hover:bg-green-600 transition px-6 py-3 rounded-md text-white font-semibold shadow-lg w-full"
+          >
+            Create Task
+          </button>
         </div>
-      </div>
-    )
-  }
+      </form>
+    </div>
+  );
+};
 
-  export default CreateTeast
+export default CreateTask;
