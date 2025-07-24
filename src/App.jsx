@@ -1,30 +1,34 @@
-import React, { useContext } from 'react'
-import Login from './Components/Auth/Login'
-import { useState } from 'react'
-import AdminDashboard from './Components/Dashboard/AdminDashboard'
-import EmployDashboard from './Components/Dashboard/EmployDashboard'
-import { AuthContext } from './Context/AuthProvider'
-const App = () => {
-  const [user, setuser] = useState(null);
+import React, { useContext, useState } from 'react';
+import Login from './Components/Auth/Login';
+import AdminDashboard from './Components/Dashboard/AdminDashboard';
+import EmployDashboard from './Components/Dashboard/EmployDashboard';
+import { AuthContext } from './Context/AuthProvider';
 
-  const handleLogin = (email,password) =>{
-    if(email =='admin@me.com' && password == '123'){
-      // console.log("admin");. 
-      setuser('admin')
-      // console.log(user);
-      
-    }else if(email == 'user@me.com' && password == '123' ){
-      // console.log("THis is user");
-      setuser("employee")
-      // console.log(user);/
-      
-    }else{
-      console.log("invalid user");
+const App = () => {
+  const authData = useContext(AuthContext); 
+  const [user, setUser] = useState(null);
+
+ 
+
+  const { admin, employees } = authData;
+
+  // console.log(" Admin Data:", admin);
+  // console.log(" Employees Data:", employees);
+
+  const handleLogin = (email, password) => {
+    const adminUser = admin.find((a) => a.email === email && a.password === password);
+    const employeeUser = employees.find((e) => e.email === email && e.password === password);
+
+    if (adminUser) {
+      setUser('admin');
+    } else if (employeeUser) {
+      setUser('employee');
+    } else {
+      console.log(" Invalid credentials");
+      alert("Invalid email or password");
     }
-  }
-  const data = useContext(AuthContext)
-  console.log(data);
-  
+  };
+
   return (
     <div className='h-[100vh] w-full bg-zinc-900 text-white'>
       {!user ? (
@@ -35,7 +39,7 @@ const App = () => {
         <EmployDashboard />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
