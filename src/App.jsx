@@ -5,19 +5,26 @@ import EmployDashboard from './Components/Dashboard/EmployDashboard';
 import { AuthContext } from './Context/AuthProvider';
 
 const App = () => {
-  const authData = useContext(AuthContext); 
+  const authData = useContext(AuthContext); // ✅ get from context
   const [user, setUser] = useState(null);
 
- 
+  if (!authData) {
+    return <div className="text-white p-4">Loading user data...</div>;
+  }
 
   const { admin, employees } = authData;
 
-  // console.log(" Admin Data:", admin);
-  // console.log(" Employees Data:", employees);
+  // console.log("👨‍💼 Admin Data:", admin);
+  // console.log("🧑‍💻 Employees Data:", employees);
 
   const handleLogin = (email, password) => {
-    const adminUser = admin.find((a) => a.email === email && a.password === password);
-    const employeeUser = employees.find((e) => e.email === email && e.password === password);
+    const adminUser = admin.find((person) => {
+      return person.email === email && person.password === password;
+    });
+
+    const employeeUser = employees.find((person) => {
+      return person.email === email && person.password === password;
+    });
 
     if (adminUser) {
       setUser('admin');
