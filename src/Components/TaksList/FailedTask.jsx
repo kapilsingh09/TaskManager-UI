@@ -1,22 +1,22 @@
 import React from 'react';
 
-const FailedTask = () => {
+const FailedTask = ({task}) => {
   return (
     <div className="flex-shrink-0 h-full w-[320px] p-5 bg-gradient-to-br from-red-400 to-red-600 rounded-2xl shadow-lg text-white">
       
       <div className="flex justify-between items-center">
         <span className="bg-white text-black bg-opacity-20 text-xs font-medium px-3 py-1 rounded-full">
-          Category
+          {task}
         </span>
-        <span className="text-xs opacity-90">20 Feb 2022</span>
+        <span className="text-xs opacity-90">{task.task.date}</span>
       </div>
 
       <h2 className="mt-6 text-xl font-bold leading-snug">
-        Make a YouTube Video
+    {task.task_title}
       </h2>
 
       <p className="mt-2 text-sm text-white text-opacity-90">
-        You missed the deadline. Review what went wrong and plan a new strategy to get back on track.
+      {task.task_description}
       </p>
 
       <div className="mt-4">

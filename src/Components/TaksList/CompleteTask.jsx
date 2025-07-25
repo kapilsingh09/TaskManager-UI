@@ -1,22 +1,22 @@
 import React from 'react';
 
-const CompleteTask = () => {
+const CompleteTask = ({task}) => {
   return (
     <div className="flex-shrink-0 h-full w-[320px] p-5 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl shadow-lg text-white">
       
       <div className="flex justify-between items-center">
         <span className="bg-white bg-opacity-20 text-black text-xs font-bold px-3 py-1 rounded-full">
-          Category
+          {task.category}
         </span>
-        <span className="text-xs opacity-90">20 Feb 2022</span>
+        <span className="text-xs opacity-90">{task.task_date}</span>
       </div>
 
       <h2 className="mt-6 text-xl font-bold leading-snug">
-        Make a YouTube Video
+      {task.task_title}
       </h2>
 
       <p className="mt-2 text-sm text-white text-opacity-90">
-        Plan, record, and edit a video for the channel. Focus on quality and add B-roll footage.
+        {task.task_description}
       </p>
 
       <div className="mt-4">
