@@ -1,4 +1,5 @@
-import React from 'react';
+import { useState } from "react";
+// import React {useState}from 'react';
 
 const CreateTask = () => {
   // const [first, setfirst] = useState(second)
@@ -10,15 +11,18 @@ const CreateTask = () => {
 
   const [Task, SetTask] = useState([])
   const submitHandler = (e) =>{
-    e.prevetDefault()
+    e.preventDefault()
     console.log("task created");
-    setAssignto('')
-    setCategory('')
-    setTask_date('')
-    setTask_description('')
-    setTask_title('')
+    console.log(task_date,task_description,assignto,category);
+    
+    // setAssignto('')
+    // setCategory('')
+    // setTask_date('')
+    // setTask_description('')
+    // setTask_title('')
 
-    SetTask()
+    SetTask({task_title,task_description,task_date,category,assignto,active:false,newTask:true,failed:true,completed:false})
+    console.log(Task);
     
   }
   return (
