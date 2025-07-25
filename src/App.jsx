@@ -71,7 +71,7 @@ const App = () => {
     setLoggedInUser(null);
     localStorage.removeItem("loggedInUser");
   };
-  console.log(loggedInUser);
+  // console.log(loggedInUser);
   
   if (!authData) {
     return <div className="text-white p-4">Loading user data...</div>;

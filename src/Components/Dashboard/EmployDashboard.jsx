@@ -6,16 +6,17 @@ import Tasklist from '../TaksList/Tasklist'
 
 const EnpollyeDashboard = ({onLogout,data}) => {
   // console.log(loggedInUser.role);
-  console.log(data);
+  // console.log(data);
   
   
   return (
     <div className='pl-20 pr-20 bg-[#1C1C1C] p-10'>
       <Header onLogout={onLogout} data={data} />
+
       {/* <h1>{loggedInUser}</h1> */}
       <TaksNumber data={data} />
 
-      <Tasklist />
+      <Tasklist data={data} />
     </div>
   )
 }
