@@ -1,14 +1,16 @@
 import React from 'react';
 
 const FailedTask = ({task}) => {
+  // console.log(task);
+  
   return (
     <div className="flex-shrink-0 h-full w-[320px] p-5 bg-gradient-to-br from-red-400 to-red-600 rounded-2xl shadow-lg text-white">
       
       <div className="flex justify-between items-center">
         <span className="bg-white text-black bg-opacity-20 text-xs font-medium px-3 py-1 rounded-full">
-          {task}
+          {task.task_title}
         </span>
-        <span className="text-xs opacity-90">{task.task.date}</span>
+        <span className="text-xs opacity-90">{task.task_date}</span>
       </div>
 
       <h2 className="mt-6 text-xl font-bold leading-snug">

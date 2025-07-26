@@ -1,7 +1,7 @@
 const employees = [
   {
     id: 1,
-    name: "Rahul Sharma",
+    name: "Rahul",
     email: "rahul.sharma@example.com",
     password: "123",
     task_stats: {
@@ -35,7 +35,7 @@ const employees = [
   },
   {
     id: 2,
-    name: "Priya Verma",
+    name: "Priya",
     email: "priya.verma@example.com",
     password: "123",
     task_stats: {
@@ -59,7 +59,7 @@ const employees = [
   },
   {
     id: 3,
-    name: "Neha Joshi",
+    name: "Neha",
     email: "neha.joshi@example.com",
     password: "123",
     task_stats: {
@@ -93,7 +93,7 @@ const employees = [
   },
   {
     id: 4,
-    name: "Ravi Mehta",
+    name: "Ravi",
     email: "ravi.mehta@example.com",
     password: "123",
     task_stats: {
@@ -127,7 +127,7 @@ const employees = [
   },
   {
     id: 5,
-    name: "Simran Kaur",
+    name: "Simran",
     email: "simran.kaur@example.com",
     password: "123",
     task_stats: {
@@ -161,7 +161,7 @@ const employees = [
   },
   {
     id: 6,
-    name: "Anil Gupta",
+    name: "Anil ",
     email: "anil.gupta@example.com",
     password: "123",
     task_stats: {
@@ -199,7 +199,7 @@ const admin = [
   {
     id: 100,
     name: "Amit Kapoor",
-    email: "amit.kapoor@example.com",
+    email: "admin@me.com",
     password: "123"
   }
 ];
