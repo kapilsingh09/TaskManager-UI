@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext, useDebugValue } from "react";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const CreateTask = () => {
   const [taskTitle, setTaskTitle] = useState('');
@@ -7,38 +8,63 @@ const CreateTask = () => {
   const [category, setCategory] = useState('');
   const [taskDate, setTaskDate] = useState('');
   const [newTask, setNewTask] = useState({});
+  
+  // Get both state and setter from AuthContext
+  const [userdata, setUserdata] = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Create new task object
     const task = {
-      taskTitle,
-      taskDescription,
+      task_title: taskTitle,
+      task_description: taskDescription,
       taskDate,
       category,
       assignedTo,
       active: false,
-      new_task: false,
-      completed: true,
+      new_task: true,
+      completed: false,
       failed: false,
     };
 
     setNewTask(task);
-    const data = JSON.parse(localStorage.getItem("employees"))
-    console.log(data);
-    
-    data.forEach(function(elem){
-      // console.log("mewo");
-      console.log(elem.name);
-      if(assignedTo == elem.name){
-        // console.log(elem.tasks);
-         elem.tasks.push(newTask)
 
+    // Get current employees from localStorage or from context fallback
+    const employees = JSON.parse(localStorage.getItem("employees")) || userdata.employees || [];
+
+    // Update the assigned employee's tasks and stats
+    const updatedEmployees = employees.map((emp) => {
+      if (emp.name === assignedTo) {
+        // Parse task_stats if it's a string
+        if (typeof emp.task_stats === 'string') {
+          try {
+            emp.task_stats = JSON.parse(emp.task_stats);
+          } catch {
+            emp.task_stats = { new_task: 0, active: 0, completed: 0, failed: 0 };
+          }
+        }
+
+        // Initialize tasks array if not present
+        if (!Array.isArray(emp.tasks)) {
+          emp.tasks = [];
+        }
+
+        emp.tasks.push(task);
+        emp.task_stats.new_task = (emp.task_stats.new_task || 0) + 1;
       }
-      
-    })
-    localStorage.setItem('employees',JSON.stringify(data))
-    // Optional: Reset form fields
+      return emp;
+    });
+
+    // Save updated employees to localStorage
+    localStorage.setItem('employees', JSON.stringify(updatedEmployees));
+
+    // Update context state to trigger UI updates everywhere
+    setUserdata({ employees: updatedEmployees });
+    console.log(userdata);
+    
+
+    // Reset form fields
     // setTaskTitle('');
     // setTaskDescription('');
     // setAssignedTo('');
@@ -46,10 +72,9 @@ const CreateTask = () => {
     // setTaskDate('');
   };
 
-  // Log newTask when it updates
   useEffect(() => {
     if (Object.keys(newTask).length > 0) {
-      // console.log("New Task Created:", newTask);
+      console.log("New Task Created:", newTask);
     }
   }, [newTask]);
 

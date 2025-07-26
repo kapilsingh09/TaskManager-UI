@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
   
   return (
     <div>
-      <AuthContext.Provider value={userdata}>
+      <AuthContext.Provider value={[userdata,setUserdata]}>
       {children}
 
       </AuthContext.Provider>

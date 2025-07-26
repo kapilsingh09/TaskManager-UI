@@ -4,7 +4,7 @@ import CreateTeast from '../Others/CreateTeast'
 import AllTask from '../Others/AllTask'
 
 const AdminDashboard = ({onLogout,data}) => {
-  console.log(data);
+  // console.log(data);
   
   return (
     <div className='h-full  w-full p-10 '>
