@@ -6,7 +6,6 @@ import FailedTask from './FailedTask';
 
 const Tasklist = ({ data }) => {
   // console.log(data);
-  
   return (
     <div
       id="tasklist"

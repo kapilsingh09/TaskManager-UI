@@ -58,39 +58,49 @@ const employees = [
     ]
   },
   {
-    id: 3,
-    name: "Neha",
-    email: "neha.joshi@example.com",
-    password: "123",
-    task_stats: {
-      active: 0,
-      completed: 1,
-      failed: 1,
-      new_task: 0,
-    },
-    tasks: [
-      {
-        active: false,
-        new_task: false,
-        completed: true,
-        failed: false,
-        task_title: "Design landing page",
-        task_description: "Create mockups and finalize the homepage layout.",
-        task_date: "2025-06-10",
-        category: "Design"
-      },
-      {
-        active: false,
-        new_task: false,
-        completed: false,
-        failed: true,
-        task_title: "Submit brand guidelines",
-        task_description: "Missed the deadline for brand guideline submission.",
-        task_date: "2025-06-05",
-        category: "Branding"
-      }
-    ]
+  id: 3,
+  name: "Neha",
+  email: "neha.joshi@example.com",
+  password: "123",
+  task_stats: {
+    active: 1, // updated
+    completed: 1,
+    failed: 1,
+    new_task: 1, // updated
   },
+  tasks: [
+    {
+      active: false,
+      new_task: false,
+      completed: true,
+      failed: false,
+      task_title: "Design landing page",
+      task_description: "Create mockups and finalize the homepage layout.",
+      task_date: "2025-06-10",
+      category: "Design"
+    },
+    {
+      active: false,
+      new_task: false,
+      completed: false,
+      failed: true,
+      task_title: "Submit brand guidelines",
+      task_description: "Missed the deadline for brand guideline submission.",
+      task_date: "2025-06-05",
+      category: "Branding"
+    },
+    {
+      active: true,
+      new_task: true,
+      completed: false,
+      failed: false,
+      task_title: "Client feedback review",
+      task_description: "Go through client feedback and create an action list.",
+      task_date: "2025-07-25",
+      category: "Design"
+    }
+  ]
+},
   {
     id: 4,
     name: "Ravi",

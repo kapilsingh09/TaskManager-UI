@@ -1,24 +1,21 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 
-const NewTask = ({task}) => {
-  console.log(task);
-  const [userdata , setUserdata] = useContext(AuthContext)
+const NewTask = ({ task }) => {
+  const [userdata, setUserdata] = useContext(AuthContext);
 
-    console.log(userdata);
-    
   return (
     <div className="flex-shrink-0 h-full w-[320px] p-5 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-lg text-white">
       
       <div className="flex justify-between items-center">
-        <span className="bg-white bg-opacity-20 text-black font-bold text-xs  px-3 py-1 rounded-full">
+        <span className="bg-white bg-opacity-20 text-black font-bold text-xs px-3 py-1 rounded-full">
           {task.category}
         </span>
         <span className="text-xs opacity-90">{task.task_date}</span>
       </div>
 
       <h2 className="mt-6 text-xl font-bold leading-snug">
-       {task.task.title}
+        {task.task_title}
       </h2>
 
       <p className="mt-2 text-sm text-white text-opacity-90">

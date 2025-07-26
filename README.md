@@ -26,7 +26,7 @@ index.js
 ##  Getting Started
 
 1. Clone this repo:
-git clone https://github.com/your-username/taskmanager-ui.git
+git clone https://github.com/kapilsingh09/taskmanager-ui.git
 
 
 

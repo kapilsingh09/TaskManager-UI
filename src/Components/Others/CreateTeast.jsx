@@ -1,92 +1,76 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const CreateTask = () => {
-  const [task_title, setTask_title] = useState('');
-  const [task_description, setTask_description] = useState('');
-  const [assignto, setAssignto] = useState('');
+  const [taskTitle, setTaskTitle] = useState('');
+  const [taskDescription, setTaskDescription] = useState('');
+  const [assignedTo, setAssignedTo] = useState('');
   const [category, setCategory] = useState('');
-  const [task_date, setTask_date] = useState('');
-  const [newTask, setNewTask] = useState([]);
+  const [taskDate, setTaskDate] = useState('');
+  const [newTask, setNewTask] = useState({});
 
-  const submitHandler = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const Task = {
-      task_title,
-      task_description,
-      task_date,
+    const task = {
+      taskTitle,
+      taskDescription,
+      taskDate,
       category,
-      assignto,
+      assignedTo,
       active: false,
-      new_task: true,
-      completed: false,
-      failed: true,
+      new_task: false,
+      completed: true,
+      failed: false,
     };
 
-    // Save to component state
-    setNewTask([...newTask, Task]);
-
-    // Fetch employees
-    const data = JSON.parse(localStorage.getItem('employees')) || [];
-    let found = false;
+    setNewTask(task);
+    const data = JSON.parse(localStorage.getItem("employees"))
     console.log(data);
     
-    // Find and assign task
-    data.forEach((employee) => {
-      if (assignto === employee.name) {
-        if (!Array.isArray(employee.tasks)) {
-          employee.tasks = [];
-        }
-        if (!employee.task_stats) {
-          employee.task_stats = {
-            new_task: 0,
-            active: 0,
-            completed: 0,
-            failed: 0
-          };
-        }
+    data.forEach(function(elem){
+      // console.log("mewo");
+      console.log(elem.name);
+      if(assignedTo == elem.name){
+        // console.log(elem.tasks);
+         elem.tasks.push(newTask)
 
-        employee.tasks.push(Task);
-        employee.task_stats.new_task += 1;
-
-        found = true;
       }
-    });
-
-    // Update localStorage
-    if (found) {
-      localStorage.setItem('employees', JSON.stringify(data));
-      alert("✅ Task created and assigned successfully.");
-    } else {
-      alert("❌ No employee found with that name.");
-    }
-
-    // Optional: Clear form fields
-    // setTask_title('');
-    // setTask_description('');
-    // setAssignto('');
+      
+    })
+    localStorage.setItem('employees',JSON.stringify(data))
+    // Optional: Reset form fields
+    // setTaskTitle('');
+    // setTaskDescription('');
+    // setAssignedTo('');
     // setCategory('');
-    // setTask_date('');
+    // setTaskDate('');
   };
+
+  // Log newTask when it updates
+  useEffect(() => {
+    if (Object.keys(newTask).length > 0) {
+      // console.log("New Task Created:", newTask);
+    }
+  }, [newTask]);
 
   return (
     <div className="p-10 bg-zinc-900 min-h-screen text-white">
       <h2 className="text-3xl font-semibold mb-6 text-center">Create New Task</h2>
 
       <form
-        onSubmit={submitHandler}
+        onSubmit={handleSubmit}
         className="flex flex-wrap bg-[#1C1C1C] p-8 rounded-xl shadow-lg gap-10"
       >
-        {/* Left Side */}
+        {/* Left Section */}
         <div className="flex-1 space-y-6">
           <div>
             <label className="block text-sm mb-2 font-medium">Task Title</label>
             <input
-              value={task_title}
-              onChange={(e) => setTask_title(e.target.value)}
+              value={taskTitle}
+              onChange={(e) => setTaskTitle(e.target.value)}
               type="text"
-              placeholder="Make a UI design"
-              className="w-full px-4 py-2 rounded-md bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-green-400"
+              placeholder="Design UI"
+              className="w-full px-4 py-2 rounded-md bg-zinc-800 border border-zinc-700 focus:outline-none"
               required
             />
           </div>
@@ -94,11 +78,11 @@ const CreateTask = () => {
           <div>
             <label className="block text-sm mb-2 font-medium">Assign To</label>
             <input
-              value={assignto}
-              onChange={(e) => setAssignto(e.target.value)}
+              value={assignedTo}
+              onChange={(e) => setAssignedTo(e.target.value)}
               type="text"
-              placeholder="Employee name"
-              className="w-full px-4 py-2 rounded-md bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-green-400"
+              placeholder="e.g. Neha"
+              className="w-full px-4 py-2 rounded-md bg-zinc-800 border border-zinc-700 focus:outline-none"
               required
             />
           </div>
@@ -109,8 +93,8 @@ const CreateTask = () => {
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               type="text"
-              placeholder="Design, Development, etc."
-              className="w-full px-4 py-2 rounded-md bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-green-400"
+              placeholder="Development, Design, etc."
+              className="w-full px-4 py-2 rounded-md bg-zinc-800 border border-zinc-700 focus:outline-none"
               required
             />
           </div>
@@ -119,33 +103,33 @@ const CreateTask = () => {
             <label className="block text-sm mb-2 font-medium">Deadline</label>
             <input
               type="date"
-              value={task_date}
-              onChange={(e) => setTask_date(e.target.value)}
-              className="w-full px-4 py-2 rounded-md bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-green-400"
+              value={taskDate}
+              onChange={(e) => setTaskDate(e.target.value)}
+              className="w-full px-4 py-2 rounded-md bg-zinc-800 border border-zinc-700 focus:outline-none"
               required
             />
           </div>
         </div>
 
-        {/* Right Side */}
+        {/* Right Section */}
         <div className="flex-1 space-y-6">
           <div>
             <label className="block text-sm mb-2 font-medium">Description</label>
             <textarea
-              value={task_description}
-              onChange={(e) => setTask_description(e.target.value)}
+              value={taskDescription}
+              onChange={(e) => setTaskDescription(e.target.value)}
               rows="8"
-              placeholder="Write task details..."
-              className="w-full px-4 py-2 rounded-md bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-green-400 resize-none"
+              placeholder="Task details..."
+              className="w-full px-4 py-2 rounded-md bg-zinc-800 border border-zinc-700 focus:outline-none resize-none"
               required
-            ></textarea>
+            />
           </div>
 
           <button
             type="submit"
-            className="bg-green-500 hover:bg-green-600 transition px-6 py-3 rounded-md text-white font-semibold shadow-lg w-full"
+            className="bg-green-500 hover:bg-green-600 transition px-6 py-3 rounded-md font-semibold shadow-lg w-full"
           >
-            Create Task
+            ➕ Create Task
           </button>
         </div>
       </form>
