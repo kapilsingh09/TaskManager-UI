@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const NewTask = ({ task }) => {
-  const [userdata, setUserdata] = useContext(AuthContext);
+  const { updateUserData } = useContext(AuthContext);
 
   return (
     <div className="flex-shrink-0 h-full w-[320px] p-5 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-lg text-white">

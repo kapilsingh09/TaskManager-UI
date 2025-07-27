@@ -3,8 +3,8 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const AllTask = () => {
-  const [userdata] = useContext(AuthContext);
-  const employees = userdata?.employees || [];
+  const { employees } = useContext(AuthContext);
+  const employeeList = employees || [];
 
   return (
     <div className="bg-[#1C1C1C] p-6 mt-6 rounded-xl shadow-inner">
@@ -21,10 +21,10 @@ const AllTask = () => {
 
       {/* Task Summary Rows */}
       <div className="h-[60vh] overflow-auto hide-scroll">
-        {employees.length === 0 ? (
+        {employeeList.length === 0 ? (
           <p className="text-gray-400">No employees or tasks found.</p>
         ) : (
-          employees.map((emp) => (
+          employeeList.map((emp) => (
             <div
               key={emp.id}
               className="grid grid-cols-5 gap-4 text-white items-center py-3 px-4 rounded-lg bg-[#2a2a2a] shadow-md mb-3"

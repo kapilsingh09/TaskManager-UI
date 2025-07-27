@@ -52,7 +52,7 @@ const Login = ({ handleLogin, error,clearError }) => {
                         >
                             ✕
                         </button>
-                        {error} mew
+                        {error}
                     </div>
                 )}
 

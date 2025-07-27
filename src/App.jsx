@@ -10,15 +10,19 @@
     const [userRole, setUserRole] = useState(null);
     const [loggedInUser, setLoggedInUser] = useState(null);
     const [error, setError] = useState('');
+    
+    // Safely extract admin and employees from authData
+    const admin = authData?.admin || [];
+    const employees = authData?.employees || [];
 
     useEffect(() => {
       // localStorage.clear()
-      setLocalStorage(); // populate if not already
-      if (authData) {
+      // setLocalStorage(); // populate if not already
+      if (authData && authData.employees && authData.admin) {
         const stored = localStorage.getItem("loggedInUser");
         if (stored) {
           const parsed = JSON.parse(stored);
-          const { employees, admin } = getLocalStorage();
+          const { employees, admin } = authData;
 
           const userData =
             parsed.role === 'admin'
@@ -31,10 +35,13 @@
       }
     }, [authData]);
 
-    const { admin, employees } = authData || {};
+
 
     const handleLogin = (email, password) => {
-      if (!admin || !employees) return;
+      if (!admin || !employees || !Array.isArray(admin) || !Array.isArray(employees)) {
+        console.log("Login data not available yet");
+        return;
+      }
 
       const adminUser = admin.find(
         (person) => person.email === email && person.password === password
@@ -62,6 +69,8 @@
         setError('');
       } else {
         setError('Invalid email or password. Please try again.');
+        console.log("Invalid email or password. Please try again.");
+        
       }
     };
 

@@ -5,8 +5,8 @@ import TaksNumber from '../Others/TaksNumber'
 import Tasklist from '../TaksList/Tasklist'
 
 const EnpollyeDashboard = ({onLogout,data}) => {
-  // console.log(loggedInUser.role);
-  // console.log(data);
+  console.log('Employee Dashboard Data:', data);
+  console.log('Employee Tasks:', data?.tasks);
   
   
   return (
