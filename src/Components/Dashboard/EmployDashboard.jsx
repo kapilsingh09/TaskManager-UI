@@ -5,12 +5,12 @@ import TaksNumber from '../Others/TaksNumber'
 import Tasklist from '../TaksList/Tasklist'
 
 const EnpollyeDashboard = ({onLogout,data}) => {
-  console.log('Employee Dashboard Data:', data);
-  console.log('Employee Tasks:', data?.tasks);
+  // console.log('Employee Dashboard Data:', data);
+  // console.log('Employee Tasks:', data?.tasks);
   
   
   return (
-    <div className='pl-20 pr-20 bg-[#1C1C1C] p-10'>
+    <div className='pl-20 pr-20 bg-[#1C1C1C] min-h-screen p-10'>
       <Header onLogout={onLogout} data={data} />
 
       {/* <h1>{loggedInUser}</h1> */}
